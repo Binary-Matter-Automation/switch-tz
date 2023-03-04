@@ -1,6 +1,16 @@
-import { printLine } from './modules/print';
+import { SwitchTZMessageSubscriber } from './modules/subscriber';
 
-console.log('Content script works!');
-console.log('Must reload extension for modifications to take effect.');
 
-printLine("Using the 'printLine' function from the Print Module");
+let contextMenuConvertToLocalSubscriber = new SwitchTZMessageSubscriber();
+
+let contextMenuClickedElem;
+
+document.addEventListener('contextmenu', (eventData) => {
+    contextMenuClickedElem = eventData.target;
+});
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    contextMenuConvertToLocalSubscriber.handleMessageRequest(
+        request, contextMenuClickedElem, sendResponse
+    );
+});

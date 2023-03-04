@@ -20,6 +20,7 @@ const Popup = () => {
           Learn React!
         </a>
       </header>
+      <Greetings />
     </div>
   );
 };
