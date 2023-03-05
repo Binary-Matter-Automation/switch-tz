@@ -39,6 +39,7 @@
     }
   ],
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "notifications"
   ]
 }
